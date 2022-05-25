@@ -187,10 +187,8 @@ keys = [
 
 groups = [Group("1", layout='monadtall'),
           Group("2", layout='monadtall'),
-          Group("3", layout='monadtall'),
-          Group("4", layout='monadtall'),
-          Group("5", layout='monadtall'),
-          Group("6", layout='monadtall')]
+          Group("3", layout='monadtall')
+          ]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
 # MOD4 + index Number : Switch to Group[index]
