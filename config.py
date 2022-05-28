@@ -106,11 +106,13 @@ keys = [
         ),
     Key([mod], "h",
         lazy.layout.shrink(),
+        lazy.layout.grow_left(),
         lazy.layout.decrease_nmaster(),
         desc='Shrink window (MonadTall), decrease number in master pane (Tile)'
         ),
     Key([mod], "l",
         lazy.layout.grow(),
+        lazy.layout.grow_right(),
         lazy.layout.increase_nmaster(),
         desc='Expand window (MonadTall), increase number in master pane (Tile)'
         ),
@@ -185,9 +187,9 @@ keys = [
              ])
 ]
 
-groups = [Group("1", layout='monadtall'),
-          Group("2", layout='monadtall'),
-          Group("3", layout='monadtall')
+groups = [Group("1", layout='monadthreecol'),
+          Group("2", layout='monadthreecol'),
+          Group("3", layout='monadthreecol')
           ]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
@@ -205,13 +207,14 @@ layouts = [
     # layout.MonadWide(**layout_theme),
     # layout.Bsp(**layout_theme),
     # layout.Stack(stacks=2, **layout_theme),
-    # layout.Columns(**layout_theme),
+    layout.Columns(**layout_theme, num_columns=4),
     layout.RatioTile(**layout_theme),
     # layout.Tile(shift_windows=True, **layout_theme),
     # layout.VerticalTile(**layout_theme),
     # layout.Matrix(**layout_theme),
     # layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
+    layout.MonadThreeCol(**layout_theme),
     layout.Max(**layout_theme),
     layout.Stack(num_stacks=2),
     # layout.RatioTile(**layout_theme),
