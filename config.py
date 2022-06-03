@@ -359,7 +359,8 @@ def init_widgets_list():
             foreground=colors[11],
             background=colors[9],
             fmt='Keyboard: {}',
-            padding=5
+            padding=5,
+            configured_keyboards=['pl', 'us']
         ),
         widget.Battery(
             foreground=colors[11],
