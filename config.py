@@ -341,6 +341,14 @@ def init_widgets_list():
             fmt='Temp: {}',
             padding=5
         ),
+        widget.CryptoTicker(
+            foreground=colors[11],
+            background=colors[9],
+            padding=5,
+            currency="USD",
+            format='{crypto}:{amount:,.2f}',
+            max_chars=20
+        ),
         widget.Memory(
             foreground=colors[11],
             background=colors[9],
