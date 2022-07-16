@@ -50,23 +50,6 @@ keys = [
         lazy.shutdown(),
         desc='Shutdown Qtile'
         ),
-    Key(["control", "shift"], "e",
-        lazy.spawn("emacsclient -c -a emacs"),
-        desc='Doom Emacs'
-        ),
-    # Switch focus to specific monitor (out of three)
-    Key([mod], "w",
-        lazy.to_screen(0),
-        desc='Keyboard focus to monitor 1'
-        ),
-    Key([mod], "e",
-        lazy.to_screen(1),
-        desc='Keyboard focus to monitor 2'
-        ),
-    Key([mod], "r",
-        lazy.to_screen(2),
-        desc='Keyboard focus to monitor 3'
-        ),
     # Switch focus of monitors
     Key([mod], "period",
         lazy.next_screen(),
@@ -76,58 +59,24 @@ keys = [
         lazy.prev_screen(),
         desc='Move focus to prev monitor'
         ),
-    # Treetab controls
-    Key([mod, "shift"], "h",
-        lazy.layout.move_left(),
-        desc='Move up a section in treetab'
-        ),
-    Key([mod, "shift"], "l",
-        lazy.layout.move_right(),
-        desc='Move down a section in treetab'
-        ),
-    # Window controls
-    Key([mod], "j",
-        lazy.layout.down(),
-        desc='Move focus down in current stack pane'
-        ),
-    Key([mod], "k",
-        lazy.layout.up(),
-        desc='Move focus up in current stack pane'
-        ),
-    Key([mod, "shift"], "j",
-        lazy.layout.shuffle_down(),
-        lazy.layout.section_down(),
-        desc='Move windows down in current stack'
-        ),
-    Key([mod, "shift"], "k",
-        lazy.layout.shuffle_up(),
-        lazy.layout.seppppction_up(),
-        desc='Move windows up in current stack'
-        ),
-    Key([mod], "h",
-        lazy.layout.shrink(),
-        lazy.layout.grow_left(),
-        lazy.layout.decrease_nmaster(),
-        desc='Shrink window (MonadTall), decrease number in master pane (Tile)'
-        ),
-    Key([mod], "l",
-        lazy.layout.grow(),
-        lazy.layout.grow_right(),
-        lazy.layout.increase_nmaster(),
-        desc='Expand window (MonadTall), increase number in master pane (Tile)'
-        ),
-    Key([mod], "n",
-        lazy.layout.normalize(),
-        desc='normalize window size ratios'
-        ),
-    Key([mod], "m",
-        lazy.layout.maximize(),
-        desc='toggle window between minimum and maximum sizes'
-        ),
-    Key([mod], "f",
-        lazy.window.toggle_floating(),
-        desc='toggle floating'
-        ),
+    Key([mod], "m", lazy.layout.maximize(),),
+    Key([mod], "f", lazy.window.toggle_floating(),),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "l", lazy.layout.right()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key([mod, "control"], "j", lazy.layout.grow_down()),
+    Key([mod, "control"], "k", lazy.layout.grow_up()),
+    Key([mod, "control"], "h", lazy.layout.grow_left()),
+    Key([mod, "control"], "l", lazy.layout.grow_right()),
+    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
+    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
+    # Key([mod], "Return", lazy.layout.toggle_split()),
+    Key([mod], "n", lazy.layout.normalize()),
     # Key([mod], "f",
     #     lazy.window.toggle_fullscreen(),
     #     desc='toggle fullscreen'
@@ -146,50 +95,11 @@ keys = [
         lazy.layout.toggle_split(),
         desc='Toggle between split and unsplit sides of stack'
         ),
-    # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
-    KeyChord([mod], "p", [
-             Key([], "e",
-                 lazy.spawn("./dmscripts/dm-confedit"),
-                 desc='Choose a config file to edit'
-                 ),
-             Key([], "i",
-                 lazy.spawn("./dmscripts/dm-maim"),
-                 desc='Take screenshots via dmenu'
-                 ),
-             Key([], "k",
-                 lazy.spawn("./dmscripts/dm-kill"),
-                 desc='Kill processes via dmenu'
-                 ),
-             Key([], "l",
-                 lazy.spawn("./dmscripts/dm-logout"),
-                 desc='A logout menu'
-                 ),
-             Key([], "m",
-                 lazy.spawn("./dmscripts/dm-man"),
-                 desc='Search manpages in dmenu'
-                 ),
-             Key([], "o",
-                 lazy.spawn("./dmscripts/dm-bookman"),
-                 desc='Search your qutebrowser bookmarks and quickmarks'
-                 ),
-             Key([], "r",
-                 lazy.spawn("./dmscripts/dm-reddit"),
-                 desc='Search reddit via dmenu'
-                 ),
-             Key([], "s",
-                 lazy.spawn("./dmscripts/dm-websearch"),
-                 desc='Search various search engines via dmenu'
-                 ),
-             Key([], "p",
-                 lazy.spawn("passmenu"),
-                 desc='Retrieve passwords with dmenu'
-                 )
-             ])
 ]
 
-groups = [Group("1", layout='monadthreecol'),
-          Group("2", layout='monadthreecol'),
-          Group("3", layout='monadthreecol')
+groups = [Group("1", layout='columns'),
+          Group("2", layout='columns'),
+          Group("3", layout='columns')
           ]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
@@ -207,7 +117,7 @@ layouts = [
     # layout.MonadWide(**layout_theme),
     # layout.Bsp(**layout_theme),
     # layout.Stack(stacks=2, **layout_theme),
-    layout.Columns(**layout_theme, num_columns=3),
+    layout.Columns(**layout_theme, num_columns=2),
     layout.RatioTile(**layout_theme),
     # layout.Tile(shift_windows=True, **layout_theme),
     # layout.VerticalTile(**layout_theme),
