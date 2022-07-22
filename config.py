@@ -171,13 +171,14 @@ widget_defaults = dict(
     font="Ubuntu Bold",
     fontsize=10,
     padding=2,
-    background=colors[2]
+    foreground=colors[11],
+    background=colors[9]
 )
 extension_defaults = widget_defaults.copy()
 
 
 def init_widgets_list():
-    widgets_list = [
+    left_side_list = [
         widget.Sep(
             linewidth=0,
             padding=6,
@@ -237,30 +238,16 @@ def init_widgets_list():
             background=colors[0],
             padding=0
         ),
+    ]
+
+    right_side_widgets = [
         widget.Net(
             interface="wlp2s0",
             format='Net: {down} ↓↑ {up}',
-            foreground=colors[11],
-            background=colors[9],
-            padding=5
-        ),
-        widget.ThermalSensor(
-            foreground=colors[11],
             background=colors[10],
-            threshold=90,
-            fmt='Temp: {}',
             padding=5
-        ),
-        widget.CryptoTicker(
-            foreground=colors[11],
-            background=colors[9],
-            padding=5,
-            currency="USD",
-            format='{crypto}:{amount:,.2f}',
-            max_chars=20
         ),
         widget.Memory(
-            foreground=colors[11],
             background=colors[9],
             mouse_callbacks={
                 'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
@@ -268,35 +255,31 @@ def init_widgets_list():
             padding=5
         ),
         widget.Volume(
-            foreground=colors[11],
             background=colors[10],
             fmt='Vol: {}',
             padding=5
         ),
         widget.KeyboardLayout(
-            foreground=colors[11],
             background=colors[9],
             fmt='Keyboard: {}',
             padding=5,
             configured_keyboards=['pl', 'us']
         ),
         widget.Battery(
-            foreground=colors[11],
             background=colors[10],
             padding=5
         ),
         widget.CryptoTicker(
             padding=5,
-            foreground=colors[11],
             background=colors[9],
         ),
         widget.Clock(
-            foreground=colors[11],
             background=colors[10],
             format="%A, %B %d - %H:%M "
         ),
     ]
-    return widgets_list
+
+    return [*left_side_list, *right_side_widgets]
 
 
 def init_screens():
