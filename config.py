@@ -1,16 +1,12 @@
-# -*- coding: utf-8 -*-
-from libqtile.dgroups import simple_key_binder
+from typing import List
 import os
-import re
-import socket
 import subprocess
+import socket
+from libqtile.dgroups import simple_key_binder
 from libqtile import qtile
-from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
+from libqtile.config import Click, Drag, Group,  Key, Match, Screen
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
-from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
-from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = "alacritty"      # My terminal of choice
