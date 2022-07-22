@@ -193,47 +193,11 @@ def init_widgets_list():
     return [*left_side_list, *m_right_side_widgets]
 
 
-def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20)),
-            Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20)),
-            Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20))]
-
-
 if __name__ in ["config", "__main__"]:
-    screens = init_screens()
+    screens = [Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20)),
+               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20)),
+               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20))]
     widgets_list = init_widgets_list()
-
-
-def window_to_prev_group(qtile):
-    if qtile.currentWindow is not None:
-        i = qtile.groups.index(qtile.currentGroup)
-        qtile.currentWindow.togroup(qtile.groups[i - 1].name)
-
-
-def window_to_next_group(qtile):
-    if qtile.currentWindow is not None:
-        i = qtile.groups.index(qtile.currentGroup)
-        qtile.currentWindow.togroup(qtile.groups[i + 1].name)
-
-
-def window_to_previous_screen(qtile):
-    i = qtile.screens.index(qtile.current_screen)
-    if i != 0:
-        group = qtile.screens[i - 1].group.name
-        qtile.current_window.togroup(group)
-
-
-def window_to_next_screen(qtile):
-    i = qtile.screens.index(qtile.current_screen)
-    if i + 1 != len(qtile.screens):
-        group = qtile.screens[i + 1].group.name
-        qtile.current_window.togroup(group)
-
-
-def switch_screens(qtile):
-    i = qtile.screens.index(qtile.current_screen)
-    group = qtile.screens[i - 1].group
-    qtile.current_screen.set_group(group)
 
 
 mouse = [
@@ -246,11 +210,6 @@ mouse = [
 
 ]
 
-dgroups_app_rules = []  # type: List
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
-
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     # default_float_rules include: utility, notification, toolbar, splash, dialog,
@@ -261,16 +220,9 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='kdenlive'),       # kdenlive
     Match(wm_class='pinentry-gtk-2'),  # GPG key password entry
 ])
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
-
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
-auto_minimize = True
 
 
-@ hook.subscribe.startup_once
+@hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
