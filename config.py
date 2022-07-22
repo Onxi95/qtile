@@ -227,6 +227,14 @@ def init_widgets_list():
             fmt='Vol: {}',
             padding=5
         ),
+        widget.Volume(
+            device="Capture",
+            fmt='Mic: {}',
+            get_volume_command="amixer get Capture".split(" "),
+            volume_down_command="amixer set Capture 2%-",
+            volume_up_command="amixer set Capture 2%+",
+            mute_command="amixer set Capture toggle"
+        ),
         widget.KeyboardLayout(
             background=colors[9],
             fmt='Keyboard: {}',
