@@ -15,47 +15,17 @@ myBrowser = "brave"  # My browser of choice
 
 keys = [
     # The essentials
-    Key([mod], "Return",
-        lazy.spawn(myTerm+" -e zsh"),
-        desc='Launches My Terminal'
-        ),
-    Key([mod, "shift"], "Return",
-        lazy.spawn("rofi -show run"),
-        desc='Run Launcher'
-        ),
-    Key([mod, "shift"], "f",
-        lazy.spawn("rofi -show filebrowser"),
-        desc='Run Launcher'
-        ),
-    Key([mod], "b",
-        lazy.spawn(myBrowser),
-        desc='Brave'
-        ),
-    Key([mod], "Tab",
-        lazy.next_layout(),
-        desc='Toggle through layouts'
-        ),
-    Key([mod, "shift"], "c",
-        lazy.window.kill(),
-        desc='Kill active window'
-        ),
-    Key([mod, "shift"], "r",
-        lazy.restart(),
-        desc='Restart Qtile'
-        ),
-    Key([mod, "shift"], "q",
-        lazy.shutdown(),
-        desc='Shutdown Qtile'
-        ),
+    Key([mod], "Return", lazy.spawn(myTerm+" -e zsh")),
+    Key([mod, "shift"], "Return", lazy.spawn("rofi -show run")),
+    Key([mod, "shift"], "f", lazy.spawn("rofi -show filebrowser")),
+    Key([mod], "b", lazy.spawn(myBrowser)),
+    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod, "shift"], "c", lazy.window.kill()),
+    Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod, "shift"], "q", lazy.shutdown()),
     # Switch focus of monitors
-    Key([mod], "period",
-        lazy.next_screen(),
-        desc='Move focus to next monitor'
-        ),
-    Key([mod], "comma",
-        lazy.prev_screen(),
-        desc='Move focus to prev monitor'
-        ),
+    Key([mod], "period", lazy.next_screen()),
+    Key([mod], "comma", lazy.prev_screen()),
     Key([mod], "m", lazy.layout.maximize(),),
     Key([mod], "f", lazy.window.toggle_floating(),),
     Key([mod], "j", lazy.layout.down()),
@@ -72,12 +42,7 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right()),
     Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
     Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
-    # Key([mod], "Return", lazy.layout.toggle_split()),
     Key([mod], "n", lazy.layout.normalize()),
-    # Key([mod], "f",
-    #     lazy.window.toggle_fullscreen(),
-    #     desc='toggle fullscreen'
-    #     ),
     # Stack controls
     Key([mod, "shift"], "Tab",
         lazy.layout.rotate(),
