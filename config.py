@@ -228,6 +228,14 @@ def start_once():
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 
+@hook.subscribe.startup_complete
+def assign_groups_to_screens():
+    screen_arrangement = [2, 0, 1]
+
+    for index, screen_number in enumerate(screen_arrangement):
+        qtile.groups_map[groups[index].name].cmd_toscreen(screen_number)
+
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
