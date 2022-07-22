@@ -2,6 +2,7 @@ from typing import List
 import os
 import subprocess
 import socket
+from functools import partial
 from libqtile.dgroups import simple_key_binder
 from libqtile import qtile
 from libqtile.config import Click, Drag, Group,  Key, Match, Screen
@@ -134,7 +135,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 widget_defaults = dict(
     font="Ubuntu Bold",
     fontsize=10,
-    padding=2,
+    padding=5,
     foreground=colors[11],
     background=colors[9]
 )
@@ -205,53 +206,26 @@ def init_widgets_list():
     ]
 
     right_side_widgets = [
-        widget.Net(
-            interface="wlp2s0",
-            format='Net: {down} ↓↑ {up}',
-            background=colors[10],
-            padding=5
-        ),
-        widget.Memory(
-            background=colors[9],
-            mouse_callbacks={
-                'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-            fmt='Mem: {}',
-            padding=5
-        ),
-        widget.Volume(
-            background=colors[10],
-            fmt='Vol: {}',
-            padding=5
-        ),
-        widget.Volume(
-            device="Capture",
-            fmt='Mic: {}',
-            get_volume_command="amixer get Capture".split(" "),
-            volume_down_command="amixer set Capture 2%-",
-            volume_up_command="amixer set Capture 2%+",
-            mute_command="amixer set Capture toggle"
-        ),
-        widget.KeyboardLayout(
-            background=colors[9],
-            fmt='Keyboard: {}',
-            padding=5,
-            configured_keyboards=['pl', 'us']
-        ),
-        widget.Battery(
-            background=colors[10],
-            padding=5
-        ),
-        widget.CryptoTicker(
-            padding=5,
-            background=colors[9],
-        ),
-        widget.Clock(
-            background=colors[10],
-            format="%A, %B %d - %H:%M "
-        ),
+        partial(widget.Net, interface="wlp2s0", format='Net: {down} ↓↑ {up}'),
+        partial(widget.Memory, mouse_callbacks={
+                'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')}, fmt='Mem: {}'),
+        partial(widget.Volume, fmt='Vol: {}'),
+        partial(widget.Volume, device="Capture", fmt='Mic: {}',
+                get_volume_command="amixer get Capture".split(" "),
+                volume_down_command="amixer set Capture 2%-",
+                volume_up_command="amixer set Capture 2%+",
+                mute_command="amixer set Capture toggle"),
+        partial(widget.KeyboardLayout, fmt='Keyboard: {}',
+                configured_keyboards=['pl', 'us']),
+        partial(widget.Battery),
+        partial(widget.CryptoTicker),
+        partial(widget.Clock, format="%A, %B %d - %H:%M "),
     ]
 
-    return [*left_side_list, *right_side_widgets]
+    m_right_side_widgets = [f(background=colors[10]) if index % 2 == 0 else f(background=colors[9])
+                            for index, f in enumerate(right_side_widgets)]
+
+    return [*left_side_list, *m_right_side_widgets]
 
 
 def init_screens():
@@ -303,6 +277,8 @@ mouse = [
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
+
+
 ]
 
 dgroups_app_rules = []  # type: List
@@ -329,7 +305,7 @@ reconfigure_screens = True
 auto_minimize = True
 
 
-@hook.subscribe.startup_once
+@ hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
