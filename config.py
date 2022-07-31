@@ -11,7 +11,7 @@ from libqtile import layout, bar, widget, hook
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = "alacritty"      # My terminal of choice
-myBrowser = "brave"  # My browser of choice
+myBrowser = "brave-browser"  # My browser of choice
 
 keys = [
     # The essentials
@@ -232,7 +232,7 @@ def start_once():
 
 @hook.subscribe.startup_complete
 def assign_groups_to_screens():
-    screen_arrangement = [2, 0, 1]
+    screen_arrangement = [1, 2, 0]
 
     for index, screen_number in enumerate(screen_arrangement):
         qtile.groups_map[groups[index].name].cmd_toscreen(screen_number)
