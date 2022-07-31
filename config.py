@@ -184,6 +184,8 @@ def init_widgets_list():
                 configured_keyboards=['pl', 'us']),
         partial(widget.Battery),
         partial(widget.CryptoTicker),
+        partial(widget.CryptoTicker, crypto="ETH"),
+        partial(widget.CryptoTicker, crypto="USDT", currency="PLN"),
         partial(widget.Clock, format="%A, %B %d - %H:%M "),
     ]
 
