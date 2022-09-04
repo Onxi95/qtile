@@ -76,7 +76,7 @@ layout_theme = {"border_width": 2,
                 }
 
 layouts = [
-    layout.Columns(**layout_theme, num_columns=2),
+    layout.Columns(**layout_theme, num_columns=3),
     layout.RatioTile(**layout_theme),
     layout.MonadThreeCol(**layout_theme),
 ]
