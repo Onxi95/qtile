@@ -18,6 +18,7 @@ keys = [
     Key([mod], "Return", lazy.spawn(myTerm+" -e zsh")),
     Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun")),
     Key([mod, "shift"], "f", lazy.spawn("flameshot gui")),
+    Key([mod], "Escape", lazy.spawn("betterlockscreen -l")),
     Key([mod], "b", lazy.spawn(myBrowser)),
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "c", lazy.window.kill()),
