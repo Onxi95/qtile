@@ -8,10 +8,11 @@ from libqtile import qtile
 from libqtile.config import Click, Drag, Group,  Key, Match, Screen
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
+from libqtile.utils import guess_terminal
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
-myTerm = "alacritty"      # My terminal of choice
-myBrowser = "brave"  # My browser of choice
+myTerm = guess_terminal() # My terminal of choice
+myBrowser = "brave"       # My browser of choice
 
 keys = [
     # The essentials
@@ -99,7 +100,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font="Ubuntu Bold",
+    font="FiraCode Nerd Font",
     fontsize=10,
     padding=5,
     foreground=colors[11],
@@ -117,7 +118,7 @@ def init_widgets_list():
             background=colors[0]
         ),
         widget.GroupBox(
-            font="Ubuntu Bold",
+            font="FiraCode Nerd Font",
             fontsize=9,
             margin_y=3,
             margin_x=0,
@@ -138,7 +139,7 @@ def init_widgets_list():
         ),
         widget.TextBox(
             text='|',
-            font="Ubuntu Mono",
+            font="FiraCode Nerd Font",
             background=colors[0],
             foreground='474747',
             padding=2,
@@ -158,7 +159,7 @@ def init_widgets_list():
         ),
         widget.TextBox(
             text='|',
-            font="Ubuntu Mono",
+            font="FiraCode Nerd Font",
             background=colors[0],
             foreground='474747',
             padding=2,
