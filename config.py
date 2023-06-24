@@ -13,6 +13,7 @@ from libqtile.utils import guess_terminal
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = guess_terminal() # My terminal of choice
 myBrowser = "brave"       # My browser of choice
+defaultFont = "FiraCode Nerd Font Bold"
 
 keys = [
     # The essentials
@@ -100,7 +101,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font="FiraCode Nerd Font",
+    font=defaultFont,
     fontsize=10,
     padding=5,
     foreground=colors[11],
@@ -118,7 +119,7 @@ def init_widgets_list():
             background=colors[0]
         ),
         widget.GroupBox(
-            font="FiraCode Nerd Font",
+            font=defaultFont,
             fontsize=9,
             margin_y=3,
             margin_x=0,
@@ -139,7 +140,7 @@ def init_widgets_list():
         ),
         widget.TextBox(
             text='|',
-            font="FiraCode Nerd Font",
+            font=defaultFont,
             background=colors[0],
             foreground='474747',
             padding=2,
@@ -159,7 +160,7 @@ def init_widgets_list():
         ),
         widget.TextBox(
             text='|',
-            font="FiraCode Nerd Font",
+            font=defaultFont,
             background=colors[0],
             foreground='474747',
             padding=2,
@@ -195,7 +196,7 @@ def init_widgets_list():
     m_right_side_widgets = [f(background=colors[10]) if index % 2 == 0 else f(background=colors[9])
                             for index, f in enumerate(right_side_widgets)]
 
-    return [*left_side_list, *m_right_side_widgets]
+    return [*left_side_list, *m_right_side_widgets] 
 
 
 if __name__ in ["config", "__main__"]:
