@@ -10,10 +10,12 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.utils import guess_terminal
 
-mod = "mod4"              # Sets mod key to SUPER/WINDOWS
+mod = "mod4"               # Sets mod key to SUPER/WINDOWS
 myTerm = guess_terminal()  # My terminal of choice
-myBrowser = "brave"       # My browser of choice
-defaultFont = "FiraCode Nerd Font Bold"
+myBrowser = "brave"        # My browser of choice
+
+defaultFont = "FiraCode Nerd Font Medium"
+defaultFontSize = 14
 
 keys = [
     # The essentials
@@ -102,7 +104,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
     font=defaultFont,
-    fontsize=10,
+    fontsize=defaultFontSize,
     padding=5,
     foreground=colors[11],
     background=colors[9]
@@ -120,7 +122,7 @@ def init_widgets_list():
         ),
         widget.GroupBox(
             font=defaultFont,
-            fontsize=9,
+            fontsize=defaultFontSize,
             margin_y=3,
             margin_x=0,
             padding_y=5,
@@ -144,7 +146,7 @@ def init_widgets_list():
             background=colors[0],
             foreground='474747',
             padding=2,
-            fontsize=14
+            fontsize=defaultFontSize
         ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
@@ -164,7 +166,7 @@ def init_widgets_list():
             background=colors[0],
             foreground='474747',
             padding=2,
-            fontsize=14
+            fontsize=defaultFontSize
         ),
         widget.WindowName(
             foreground=colors[6],
@@ -200,9 +202,10 @@ def init_widgets_list():
 
 
 if __name__ in ["config", "__main__"]:
-    screens = [Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25)),
-               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25)),
-               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25))]
+    screens = [Screen(bottom=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25)),
+               Screen(bottom=bar.Bar(
+                   widgets=init_widgets_list(), opacity=1.0, size=25)),
+               Screen(bottom=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25))]
     widgets_list = init_widgets_list()
 
 
