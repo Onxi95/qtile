@@ -66,7 +66,9 @@ keys = [
 
 groups = [Group("1", layout='columns'),
           Group("2", layout='columns'),
-          Group("3", layout='columns')
+          Group("3", layout='columns'),
+          Group("4", layout='columns'),
+          Group("5", layout='columns'),
           ]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
