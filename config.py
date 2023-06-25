@@ -86,18 +86,28 @@ layouts = [
     layout.MonadThreeCol(**layout_theme),
 ]
 
-colors = [["#073642", "#073642"],
-          ["#1c1f24", "#1c1f24"],
-          ["#dfdfdf", "#dfdfdf"],
-          ["#ff6c6b", "#ff6c6b"],
-          ["#98be65", "#98be65"],
-          ["#da8548", "#da8548"],
-          ["#51afef", "#51afef"],
-          ["#c678dd", "#c678dd"],
-          ["#46d9ff", "#46d9ff"],
-          ["#073642", "#073642"],
-          ["#268bd2", "#268bd2"],
-          ["#ffffff", "#ffffff"], ]
+colors = {
+    "lightBlue": "#51afef",
+    "blue":      "#268bd2",
+    "white":     "#ffffff",
+    "darkBlue":  "#073642",
+    "dark":      "#1c1f24",
+    "gray":      "#dfdfdf",
+    "green":     "#98be65",
+}
+
+# colors = [["#073642", "#073642"],
+#           ["#1c1f24", "#1c1f24"],
+#           ["#dfdfdf", "#dfdfdf"],
+#           ["#ff6c6b", "#ff6c6b"],
+#           ["#98be65", "#98be65"],
+#           ["#da8548", "#da8548"],
+#           ["#51afef", "#51afef"],
+#           ["#c678dd", "#c678dd"],
+#           ["#46d9ff", "#46d9ff"],
+#           ["#073642", "#073642"],
+#           ["#268bd2", "#268bd2"],
+#           ["#ffffff", "#ffffff"], ]
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -106,8 +116,8 @@ widget_defaults = dict(
     font=defaultFont,
     fontsize=defaultFontSize,
     padding=5,
-    foreground=colors[11],
-    background=colors[9]
+    foreground=colors["white"],
+    background=colors["darkBlue"]
 )
 extension_defaults = widget_defaults.copy()
 
@@ -117,8 +127,8 @@ def init_widgets_list():
         widget.Sep(
             linewidth=0,
             padding=6,
-            foreground=colors[2],
-            background=colors[0]
+            foreground=colors["gray"],
+            background=colors["darkBlue"]
         ),
         widget.GroupBox(
             font=defaultFont,
@@ -128,49 +138,49 @@ def init_widgets_list():
             padding_y=5,
             padding_x=3,
             borderwidth=3,
-            active=colors[2],
-            inactive=colors[11],
+            active=colors["gray"],
+            inactive=colors["white"],
             rounded=False,
-            highlight_color=colors[1],
+            highlight_color=colors["dark"],
             highlight_method="line",
-            this_current_screen_border=colors[6],
-            this_screen_border=colors[4],
-            other_current_screen_border=colors[6],
-            other_screen_border=colors[4],
-            foreground=colors[2],
-            background=colors[0]
+            this_current_screen_border=colors["lightBlue"],
+            this_screen_border=colors["green"],
+            other_current_screen_border=colors["lightBlue"],
+            other_screen_border=colors["green"],
+            foreground=colors["gray"],
+            background=colors["darkBlue"]
         ),
         widget.TextBox(
             text='|',
             font=defaultFont,
-            background=colors[0],
+            background=colors["darkBlue"],
             foreground='474747',
             padding=2,
             fontsize=defaultFontSize
         ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[2],
-            background=colors[0],
+            foreground=colors["gray"],
+            background=colors["darkBlue"],
             padding=0,
             scale=0.7
         ),
         widget.CurrentLayout(
-            foreground=colors[2],
-            background=colors[0],
+            foreground=colors["gray"],
+            background=colors["darkBlue"],
             padding=5
         ),
         widget.TextBox(
             text='|',
             font=defaultFont,
-            background=colors[0],
+            background=colors["darkBlue"],
             foreground='474747',
             padding=2,
             fontsize=defaultFontSize
         ),
         widget.WindowName(
-            foreground=colors[6],
-            background=colors[0],
+            foreground=colors["lightBlue"],
+            background=colors["darkBlue"],
             padding=0
         ),
     ]
@@ -195,7 +205,7 @@ def init_widgets_list():
         partial(widget.Clock, format="%A, %B %d - %H:%M "),
     ]
 
-    m_right_side_widgets = [f(background=colors[10]) if index % 2 == 0 else f(background=colors[9])
+    m_right_side_widgets = [f(background=colors["darkBlue"]) if index % 2 == 0 else f(background=colors["blue"])
                             for index, f in enumerate(right_side_widgets)]
 
     return [*left_side_list, *m_right_side_widgets]
