@@ -113,17 +113,6 @@ colors = {
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
-##### DEFAULT WIDGET SETTINGS #####
-widget_defaults = dict(
-    font=defaultFont,
-    fontsize=defaultFontSize,
-    padding=5,
-    foreground=colors["white"],
-    background=colors["darkBlue"]
-)
-extension_defaults = widget_defaults.copy()
-
-
 def init_widgets_list():
     left_side_list = [
         widget.Sep(
