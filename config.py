@@ -236,7 +236,7 @@ def start_once():
 
 @hook.subscribe.startup_complete
 def assign_groups_to_screens():
-    screen_arrangement = [1, 2, 0]
+    screen_arrangement = [0, 1]
 
     for index, screen_number in enumerate(screen_arrangement):
         qtile.groups_map[groups[index].name].cmd_toscreen(screen_number)
