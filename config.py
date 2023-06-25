@@ -13,7 +13,7 @@ mod = "mod4"               # Sets mod key to SUPER/WINDOWS
 myTerm = guess_terminal()  # My terminal of choice
 myBrowser = "brave"        # My browser of choice
 
-defaultFont = "FiraCode Nerd Font Medium"
+defaultFont = "RobotoMono Nerd Font"
 defaultFontSize = 14
 
 keys = [
