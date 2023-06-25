@@ -11,7 +11,7 @@ from libqtile import layout, bar, widget, hook
 from libqtile.utils import guess_terminal
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
-myTerm = guess_terminal() # My terminal of choice
+myTerm = guess_terminal()  # My terminal of choice
 myBrowser = "brave"       # My browser of choice
 defaultFont = "FiraCode Nerd Font Bold"
 
@@ -196,13 +196,13 @@ def init_widgets_list():
     m_right_side_widgets = [f(background=colors[10]) if index % 2 == 0 else f(background=colors[9])
                             for index, f in enumerate(right_side_widgets)]
 
-    return [*left_side_list, *m_right_side_widgets] 
+    return [*left_side_list, *m_right_side_widgets]
 
 
 if __name__ in ["config", "__main__"]:
-    screens = [Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20)),
-               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20)),
-               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=20))]
+    screens = [Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25)),
+               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25)),
+               Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25))]
     widgets_list = init_widgets_list()
 
 
