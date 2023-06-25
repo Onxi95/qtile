@@ -184,7 +184,7 @@ def init_widgets_list():
         partial(widget.Clock, format="%A, %B %d - %H:%M "),
     ]
 
-    m_right_side_widgets = [f() if index % 2 == 0 else f(background=colors["blue"])
+    m_right_side_widgets = [f(padding=10) if index % 2 == 0 else f(padding=10, background=colors["blue"])
                             for index, f in enumerate(right_side_widgets)]
 
     return [*left_side_list, *m_right_side_widgets]
