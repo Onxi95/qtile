@@ -27,6 +27,7 @@ keys = [
     Key([mod, "shift"], "c", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "q", lazy.shutdown()),
+    Key([mod, "shift"], "s", lazy.spawn("shutdown now")),
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen()),
     Key([mod], "comma", lazy.prev_screen()),
