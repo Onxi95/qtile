@@ -1,4 +1,3 @@
-from typing import List
 import os
 import subprocess
 import socket
@@ -89,13 +88,14 @@ layouts = [
 ]
 
 colors = {
-    "lightBlue": "#51afef",
-    "blue":      "#268bd2",
-    "white":     "#ffffff",
-    "darkBlue":  "#073642",
-    "dark":      "#1c1f24",
-    "gray":      "#dfdfdf",
-    "green":     "#98be65",
+    "lightBlue":  "#51afef",
+    "blue":       "#268bd2",
+    "white":      "#ffffff",
+    "darkBlue":   "#073642",
+    "dark":       "#1c1f24",
+    "gray":       "#dfdfdf",
+    "green":      "#98be65",
+    "background": "#002b36",
 }
 
 # colors = [["#073642", "#073642"],
@@ -111,16 +111,11 @@ colors = {
 #           ["#268bd2", "#268bd2"],
 #           ["#ffffff", "#ffffff"], ]
 
-prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+prompt = f"{os.environ['USER']}@{socket.gethostname()}: "
+
 
 def init_widgets_list():
     left_side_list = [
-        widget.Sep(
-            linewidth=0,
-            padding=6,
-            foreground=colors["gray"],
-            background=colors["darkBlue"]
-        ),
         widget.GroupBox(
             font=defaultFont,
             fontsize=defaultFontSize,
@@ -138,13 +133,10 @@ def init_widgets_list():
             this_screen_border=colors["green"],
             other_current_screen_border=colors["lightBlue"],
             other_screen_border=colors["green"],
-            foreground=colors["gray"],
-            background=colors["darkBlue"]
         ),
         widget.TextBox(
             text='|',
             font=defaultFont,
-            background=colors["darkBlue"],
             foreground='474747',
             padding=2,
             fontsize=defaultFontSize
@@ -152,26 +144,22 @@ def init_widgets_list():
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             foreground=colors["gray"],
-            background=colors["darkBlue"],
             padding=0,
             scale=0.7
         ),
         widget.CurrentLayout(
             foreground=colors["gray"],
-            background=colors["darkBlue"],
             padding=5
         ),
         widget.TextBox(
             text='|',
             font=defaultFont,
-            background=colors["darkBlue"],
             foreground='474747',
             padding=2,
             fontsize=defaultFontSize
         ),
         widget.WindowName(
             foreground=colors["lightBlue"],
-            background=colors["darkBlue"],
             padding=0
         ),
     ]
@@ -196,17 +184,33 @@ def init_widgets_list():
         partial(widget.Clock, format="%A, %B %d - %H:%M "),
     ]
 
-    m_right_side_widgets = [f(background=colors["darkBlue"]) if index % 2 == 0 else f(background=colors["blue"])
+    m_right_side_widgets = [f() if index % 2 == 0 else f(background=colors["blue"])
                             for index, f in enumerate(right_side_widgets)]
 
     return [*left_side_list, *m_right_side_widgets]
 
 
 if __name__ in ["config", "__main__"]:
-    screens = [Screen(bottom=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25)),
-               Screen(bottom=bar.Bar(
-                   widgets=init_widgets_list(), opacity=1.0, size=25)),
-               Screen(bottom=bar.Bar(widgets=init_widgets_list(), opacity=1.0, size=25))]
+    screens = [
+        Screen(
+            bottom=bar.Bar(widgets=init_widgets_list(),
+                           opacity=1.0,
+                           size=25,
+                           background=[colors["background"]]
+                           )),
+        Screen(
+            bottom=bar.Bar(
+                widgets=init_widgets_list(),
+                opacity=1.0,
+                size=25,
+                background=[colors["background"]]
+            )),
+        Screen(
+            bottom=bar.Bar(widgets=init_widgets_list(),
+                           opacity=1.0,
+                           size=25,
+                           background=[colors["background"]]
+                           ))]
     widgets_list = init_widgets_list()
 
 
