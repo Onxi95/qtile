@@ -19,3 +19,4 @@ xrandr --output eDP-1 --mode 1920x1080 --pos 5120x236 --rotate normal --output D
 # find /usr/share/backgrounds/dtos-backgrounds/ -type f | shuf -n 1 | xargs xwallpaper --stretch &
 # 3. Uncomment to set wallpaper with nitrogen
 nitrogen --restore &
+udiskie &
