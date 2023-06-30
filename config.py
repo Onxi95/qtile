@@ -99,19 +99,6 @@ colors = {
     "background": "#002b36",
 }
 
-# colors = [["#073642", "#073642"],
-#           ["#1c1f24", "#1c1f24"],
-#           ["#dfdfdf", "#dfdfdf"],
-#           ["#ff6c6b", "#ff6c6b"],
-#           ["#98be65", "#98be65"],
-#           ["#da8548", "#da8548"],
-#           ["#51afef", "#51afef"],
-#           ["#c678dd", "#c678dd"],
-#           ["#46d9ff", "#46d9ff"],
-#           ["#073642", "#073642"],
-#           ["#268bd2", "#268bd2"],
-#           ["#ffffff", "#ffffff"], ]
-
 prompt = f"{os.environ['USER']}@{socket.gethostname()}: "
 
 
