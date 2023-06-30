@@ -18,7 +18,7 @@ defaultFontSize = 14
 
 keys = [
     # The essentials
-    Key([mod], "Return", lazy.spawn(myTerm+" -e zsh")),
+    Key([mod], "Return", lazy.spawn(myTerm)),
     Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun")),
     Key([mod, "shift"], "f", lazy.spawn("flameshot gui")),
     Key([mod], "Escape", lazy.spawn("betterlockscreen -l")),
