@@ -194,8 +194,7 @@ def init_widgets_list():
     ]
 
     right_side_widgets = [
-        partial(widget.Net, interface="wlan0",
-                format='Net: {down} ↓↑ {up}'),
+        partial(widget.Wlan, interface="wlan0"),
         partial(widget.Memory, mouse_callbacks={
                 'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')}, fmt='Mem: {}'),
         partial(
