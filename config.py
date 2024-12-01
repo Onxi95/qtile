@@ -23,7 +23,12 @@ keys = [
     # The essentials
     Key([mod], "Return", lazy.spawn(myTerm)),
     Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun")),
-    Key([mod, "shift"], "f", lazy.spawn("flameshot gui")),
+    Key([mod, "shift"], "q", lazy.spawn("flameshot gui")),
+    Key(
+        [mod, "shift"],
+        "f",
+        lazy.spawn("flameshot gui"),
+    ),
     Key([mod], "Escape", lazy.spawn("betterlockscreen -l")),
     Key([mod], "b", lazy.spawn(myBrowser)),
     Key([mod], "Tab", lazy.next_layout()),
@@ -102,7 +107,7 @@ layout_theme = {
 }
 
 layouts = [
-    layout.Columns(**layout_theme, num_columns=3),
+    layout.Columns(**layout_theme, num_columns=2),
     layout.RatioTile(**layout_theme),
     layout.MonadThreeCol(**layout_theme),
 ]
@@ -173,10 +178,10 @@ def init_widgets_list():
             widget.Volume,
             device="Capture",
             fmt="Mic: {}",
-            get_volume_command="amixer get Capture".split(" "),
-            volume_down_command="amixer set Capture 2%-",
-            volume_up_command="amixer set Capture 2%+",
-            mute_command="amixer set Capture toggle",
+            get_volume_command="amixer sget Capture | grep -oP '\\d+%' | head -n 1",
+            volume_down_command="amixer sset Capture 2%-",
+            volume_up_command="amixer sset Capture 2%+",
+            mute_command="amixer sset Capture toggle",
         ),
         partial(
             widget.KeyboardLayout, fmt="Keyboard: {}", configured_keyboards=["pl", "us"]
