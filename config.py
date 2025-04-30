@@ -99,11 +99,29 @@ groups = [
 # MOD4 + shift + index Number : Send active window to another Group
 dgroups_key_binder = simple_key_binder("mod4")
 
+colors = {
+    # Nord Frost palette
+    "lightBlue": "#88C0D0",  # Frost 2
+    "blue": "#5E81AC",  # Frost 3
+    "white": "#ECEFF4",  # Snow Storm 3
+    "darkBlue": "#4C566A",  # Polar Night 4
+    "dark": "#2E3440",  # Polar Night 1
+    "gray": "#D8DEE9",  # Snow Storm 1
+    "green": "#A3BE8C",  # Aurora green
+    "background": "#3B4252",  # Polar Night 2
+    # Additional Nord colors
+    # "red": "#BF616A",      # Aurora red
+    # "orange": "#D08770",   # Aurora orange
+    # "yellow": "#EBCB8B",   # Aurora yellow
+    # "purple": "#B48EAD",   # Aurora purple
+}
+
+
 layout_theme = {
     "border_width": 2,
     "margin": 8,
-    "border_focus": "268bd2",
-    "border_normal": "073642",
+    "border_focus": colors["lightBlue"],
+    "border_normal": colors["darkBlue"],
 }
 
 layouts = [
@@ -111,17 +129,6 @@ layouts = [
     layout.RatioTile(**layout_theme),
     layout.MonadThreeCol(**layout_theme),
 ]
-
-colors = {
-    "lightBlue": "#51afef",
-    "blue": "#268bd2",
-    "white": "#ffffff",
-    "darkBlue": "#073642",
-    "dark": "#1c1f24",
-    "gray": "#dfdfdf",
-    "green": "#98be65",
-    "background": "#002b36",
-}
 
 prompt = f"{os.environ['USER']}@{socket.gethostname()}: "
 
