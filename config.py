@@ -193,7 +193,7 @@ def init_widgets_list():
         partial(
             widget.KeyboardLayout, fmt="Keyboard: {}", configured_keyboards=["pl", "us"]
         ),
-        # partial(widget.Battery),
+        partial(widget.Battery),
         partial(widget.CryptoTicker, crypto="USDT", currency="PLN", update_interval=60),
         partial(widget.Clock, format="%A, %B %d - %H:%M "),
     ]
