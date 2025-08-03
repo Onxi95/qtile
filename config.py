@@ -272,6 +272,12 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
+    if not subprocess.run(["pgrep", myBrowser], capture_output=True).stdout:
+        subprocess.Popen(["brave"])
+
+    if not subprocess.run(["pgrep", "code"], capture_output=True).stdout:
+        subprocess.Popen(["code"])
+
 
 @hook.subscribe.startup_complete
 def assign_groups_to_screens():
